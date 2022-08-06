@@ -21,6 +21,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -45,7 +47,14 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatTableModule,
     MatSlideToggleModule,
     MatStepperModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [ 
     ],

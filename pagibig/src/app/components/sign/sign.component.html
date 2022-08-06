@@ -1,38 +1,42 @@
-<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-    {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-  </button>
-  <mat-stepper [linear]="isLinear" #stepper>
+<mat-stepper class="container" [linear]="isLinear" #stepper>
     <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Fill out your name</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Name</mat-label>
-          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
+        <form class="form" [formGroup]="firstFormGroup">     
+                <h2>Hola bienvenido</h2>
+                <p>Agrega una imagen para tu perfil de usuario</p>
+                <div class="image">
+                    <img [src]="url ? url : 'assets/img/avatar.png'" srcset="assets/img/avatar.png 4x" class="profile">
+                    <input type="file" (change)="onSelectFile($event)" style="color: transparent;"> 
+                </div>
+            <mat-form-field floatLabel="always">
+                <mat-label>Correo electronico</mat-label>
+                <input matInput placeholder="johan@gmail.com" formControlName="firstCtrl" type="email" name="email" required>
+            </mat-form-field>
+           <mat-form-field floatLabel="always"> 
+                <mat-label>Número celular</mat-label>
+                <input matInput placeholder="0946492421" formControlName="firstCtrl" type="tel"  required>
+           </mat-form-field>
+            <div class="arrow">
+                <button mat-button matStepperNext><i class="material-icons">arrow_right</i></button>
+            </div>
+        </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
-      <form [formGroup]="secondFormGroup">
-        <mat-form-field appearance="fill">
-          <mat-label>Address</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                 required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
+    <mat-step [stepControl]="secondFormGroup" >
+        <form [formGroup]="secondFormGroup">
+            <mat-form-field appearance="fill">
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+            </mat-form-field>
+            <div class="arrow">
+                <button mat-button matStepperPrevious><span class="material-icons">arrow_left</span></button>
+                <button mat-button matStepperNext><span class="material-icons">arrow_right</span></button>
+            </div>
+        </form>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
-      </div>
+        <p>You are now done.</p>
+        <div class="arrow">
+            <button mat-button matStepperPrevious><span class="material-icons">arrow_left</span></button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
     </mat-step>
-  </mat-stepper>
+</mat-stepper>

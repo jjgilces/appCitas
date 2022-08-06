@@ -10,10 +10,8 @@ export class SignComponent implements OnInit {
   username : string ="";
   password : string ="";
   show: boolean= false;
-  submit(){
-  console.log("user name is " + this.username)
-  this.clear();
-  }
+  url:string="";
+
 
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
@@ -31,6 +29,24 @@ export class SignComponent implements OnInit {
     this.username ="";
     this.password = "";
     this.show = true;
+   
+  }
+
+
+  submit(){
+    console.log("user name is " + this.username);
+    this.clear();
+  }
+  
+  onSelectFile(e:any){
+    if(e.target.files){
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload=(event:any)=>{
+        this.url=event.target.result;
+        
+      }
     }
+  }
 
 }

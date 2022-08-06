@@ -4,7 +4,7 @@
     --rosa: #FF2E63;
     --blanco: #DBE2EF;
   }
-html, body { height: 100%; 
+html, body { 
     background-color: var(--negro);
     color: var(--blanco);
 }
