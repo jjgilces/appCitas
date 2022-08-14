@@ -23,6 +23,8 @@ import { HomeComponent } from './components/home/home.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ChatComponent } from './components/chat/chat.component';
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { environment } from '../environments/environment';
     SplashComponent,
     LoginComponent,
     HomeComponent,
-    SignComponent
+    SignComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ import { environment } from '../environments/environment';
     MatStepperModule,
     ReactiveFormsModule,
     MatSelectModule,
+    MatCheckboxModule,    
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable

@@ -1,42 +1,94 @@
-<mat-stepper class="container" [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
+<mat-horizontal-stepper class="container" fxLayout="column" fxFlex="60"  [linear]="isLinear" #stepper>
+    <mat-step class="row" fxFlex="70"  fxLayout="column" [stepControl]="firstFormGroup">
         <form class="form" [formGroup]="firstFormGroup">     
                 <h2>Hola bienvenido</h2>
                 <p>Agrega una imagen para tu perfil de usuario</p>
                 <div class="image">
-                    <img [src]="url ? url : 'assets/img/avatar.png'" srcset="assets/img/avatar.png 4x" class="profile">
-                    <input type="file" (change)="onSelectFile($event)" style="color: transparent;"> 
+                    
+                    <input type="file" (change)="onSelectFile($event)" style=" display:none;"> 
+                    <button id="button" name="button" value="Upload" onclick="thisFileUpload();"><img [src]="url" srcset="{{url}} 4x" class="profile"></button>
+
                 </div>
             <mat-form-field floatLabel="always">
                 <mat-label>Correo electronico</mat-label>
-                <input matInput placeholder="johan@gmail.com" formControlName="firstCtrl" type="email" name="email" required>
+                <input matInput placeholder="johan@gmail.com" formControlName="firstCtrl" type="email" [name]="email" required>
             </mat-form-field>
            <mat-form-field floatLabel="always"> 
                 <mat-label>Número celular</mat-label>
-                <input matInput placeholder="0946492421" formControlName="firstCtrl" type="tel"  required>
+                <input matInput placeholder="0946492421" formControlName="firstCtrl" type="tel" name="telf" required>
            </mat-form-field>
+           <mat-form-field floatLabel="always"> 
+                <mat-label>Contraseña</mat-label>
+                <input matInput formControlName="firstCtrl" type="password" name="password" required>
+        </mat-form-field>
             <div class="arrow">
+                <button mat-button matStepperNext><i class="material-icons">arrow_right</i></button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step class="row" fxFlex="80px"  fxLayout="column" [stepControl]="secondFormGroup" >
+        <form [formGroup]="secondFormGroup">
+            <h2>Crea tu perfil</h2>
+            <mat-form-field appearance="fill" floatLabel="always">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="secondCtrl" placeholder="Johan Jair" [(ngModel)]="name" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill" floatLabel="always">
+                <mat-label>Apellido</mat-label>
+                <input matInput formControlName="secondCtrl" placeholder="Gilces Reyes" name="lastname" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill" floatLabel="always">
+                <mat-label>Edad</mat-label>
+                <input matInput type="number" formControlName="secondCtrl" placeholder="18" min="18" name="age" required>
+            </mat-form-field>
+            <div class="arrow">
+                <button mat-button matStepperPrevious><i class="material-icons">arrow_left</i></button>
                 <button mat-button matStepperNext><i class="material-icons">arrow_right</i></button>
             </div>
         </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" >
         <form [formGroup]="secondFormGroup">
-            <mat-form-field appearance="fill">
-                <mat-label>Address</mat-label>
-                <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+            <h2>Preferencias</h2>
+            <mat-form-field appearance="fill" floatLabel="always">
+                <mat-label>Género</mat-label>
+                <mat-select [(value)]="selectedGenre">
+                    <mat-option *ngFor="let food of generos"  [value]="food">
+                      {{food}}
+                    </mat-option>
+                  </mat-select>
             </mat-form-field>
+            <mat-form-field appearance="fill" >
+                <mat-label>Busco:</mat-label>
+                <mat-select multiple>
+                    <mat-option *ngFor="let food of gustos" [value]="food">
+                      {{food}}
+                    </mat-option>
+                  </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" floatLabel="always">
+                <mat-label>Signo Zodiacal</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let food of signosZodiacales" [value]="food">
+                      {{food}}
+                    </mat-option>
+                  </mat-select>
+            </mat-form-field>
+            <div class="row">
+                <mat-label>Intereses</mat-label>
+                <ul class="list-group-horizontal">
+                    <li class="list-group-item" *ngFor="let subtask of interest">
+                    <mat-checkbox [color]="rosa">
+                        {{subtask}}
+                    </mat-checkbox>
+                    </li>
+                </ul>
+            </div>
+
             <div class="arrow">
-                <button mat-button matStepperPrevious><span class="material-icons">arrow_left</span></button>
-                <button mat-button matStepperNext><span class="material-icons">arrow_right</span></button>
+                <button mat-button matStepperPrevious><i class="material-icons">arrow_left</i></button>
+                <button mat-button (click)="confirm()"><i class="material-icons" id="confirm"> check</i></button>
             </div>
         </form>
     </mat-step>
-    <mat-step>
-        <p>You are now done.</p>
-        <div class="arrow">
-            <button mat-button matStepperPrevious><span class="material-icons">arrow_left</span></button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-        </div>
-    </mat-step>
-</mat-stepper>
+</mat-horizontal-stepper>

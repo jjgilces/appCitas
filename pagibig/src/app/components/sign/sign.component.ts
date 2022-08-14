@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign',
@@ -7,12 +8,16 @@ import {FormBuilder, Validators} from '@angular/forms';
   styleUrls: ['./sign.component.css']
 })
 export class SignComponent implements OnInit {
-  username : string ="";
-  password : string ="";
+  name : string ="";
+  email : string ="";
+  selectedGenre:String="";
   show: boolean= false;
-  url:string="";
-
-
+  url:string='/assets/img/perfil.png';
+  signosZodiacales:String[]=["Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio","Piscis"]
+  interest:String[]=["Mascotas","Deportes","Fotografía","Arte","Comedia","Lectura","Anime","Fumadores","Medio Ambiente"]
+  generos:String[]=["Masculino","Femenino","Otro"]
+  gustos:String[]=["Hombre","Mujeres"]
+  rosa:String="warn"
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
@@ -21,30 +26,24 @@ export class SignComponent implements OnInit {
   });
   isLinear = false;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder,private router: Router) { }
 
   ngOnInit(): void {
   }
-  clear(){
-    this.username ="";
-    this.password = "";
-    this.show = true;
-   
+
+  confirm(){
+    console.log(this.selectedGenre);
+    console.log("user name is " + this.name);
+    this.router.navigate(['home']);
   }
 
-
-  submit(){
-    console.log("user name is " + this.username);
-    this.clear();
-  }
-  
   onSelectFile(e:any){
     if(e.target.files){
       var reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       reader.onload=(event:any)=>{
         this.url=event.target.result;
-        
+        console.log("hola")
       }
     }
   }
