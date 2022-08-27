@@ -21,7 +21,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
 import {MatStepperModule} from '@angular/material/stepper';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ChatComponent } from './components/chat/chat.component';
@@ -52,13 +51,7 @@ import { ChatComponent } from './components/chat/chat.component';
     MatStepperModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatCheckboxModule,    
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    })
+    MatCheckboxModule
   ],
   providers: [ 
     ],

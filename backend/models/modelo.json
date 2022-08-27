@@ -1,0 +1,37 @@
+{
+	"model": {
+		"type": "Object",
+		"value": {
+			"Personid": {
+				"type": "incrementNumber",
+				"options": {
+					"from": 1
+				}
+			},
+			"Age": {
+				"type": "incrementNumber",
+
+				"options": {
+					"from": 18
+				}
+			},
+
+			"Zodiac": {
+                "type": "randomElementInArray",
+                "value": ["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpión","Sagitario","Capricornio","Acuario","Piscis"]
+			},
+            "Gender":{
+                "type": "randomElementInArray",
+            "value": ["F", "M", "O"]
+            },
+            "Email":{
+                "type": "Literal",
+                "value": "person@gmail.com"
+            },
+            "LastName": {
+                "type": "faker",
+                "value": "name.lastName"
+            }
+		}
+	}
+}
