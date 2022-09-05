@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { SplashComponent } from './components/splash/splash.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignComponent } from './components/sign/sign.component';
-
+import {FirebaseTSApp} from 'firebasets/firebasetsApp/firebaseTSApp'
+import {environment} from 'src/environments/environment'
 
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -21,10 +22,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
 import {MatStepperModule} from '@angular/material/stepper';
-import { environment } from '../environments/environment';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ChatComponent } from './components/chat/chat.component';
-
+import { ProfileComponent } from './components/profile/profile.component';
+import { PostComponent } from './components/post/post.component';
+import { MatchComponent } from './components/match/match.component';
+import { HeaderComponent } from './components/shared/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,10 +37,15 @@ import { ChatComponent } from './components/chat/chat.component';
     LoginComponent,
     HomeComponent,
     SignComponent,
-    ChatComponent
+    ChatComponent,
+    ProfileComponent,
+    PostComponent,
+    MatchComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -57,4 +66,9 @@ import { ChatComponent } from './components/chat/chat.component';
     ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(){
+    FirebaseTSApp.init(environment.firebaseConfig);
+  }
+ }
