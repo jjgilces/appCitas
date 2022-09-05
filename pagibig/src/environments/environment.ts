@@ -3,7 +3,22 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // Import the functions you need from the SDKs you need
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+ firebaseConfig : {
+  apiKey: "AIzaSyBSdIpcULXpBiBXC8fd4BE2XD4NdhWfQMg",
+  authDomain: "socialmedia-a26da.firebaseapp.com",
+  projectId: "socialmedia-a26da",
+  storageBucket: "socialmedia-a26da.appspot.com",
+  messagingSenderId: "1093607798194",
+  appId: "1:1093607798194:web:03fa7d4a1bbd303ef3a0ab"
+}
+
+// Initialize Firebase
 };
 
 /*

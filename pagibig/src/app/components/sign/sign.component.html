@@ -3,15 +3,14 @@
         <form class="form" [formGroup]="firstFormGroup">     
                 <h2>Hola bienvenido</h2>
                 <p>Agrega una imagen para tu perfil de usuario</p>
-                <div class="image">
-                    
+                <div class="image">            
                     <input type="file" (change)="onSelectFile($event)" style=" display:none;"> 
                     <button id="button" name="button" value="Upload" onclick="thisFileUpload();"><img [src]="url" srcset="{{url}} 4x" class="profile"></button>
 
                 </div>
             <mat-form-field floatLabel="always">
                 <mat-label>Correo electronico</mat-label>
-                <input matInput placeholder="johan@gmail.com" formControlName="firstCtrl" type="email" [name]="email" required>
+                <input matInput #registerEmail placeholder="johan@gmail.com" formControlName="firstCtrl" type="email" [(ngModel)]="email" required>
             </mat-form-field>
            <mat-form-field floatLabel="always"> 
                 <mat-label>Número celular</mat-label>
@@ -19,7 +18,7 @@
            </mat-form-field>
            <mat-form-field floatLabel="always"> 
                 <mat-label>Contraseña</mat-label>
-                <input matInput formControlName="firstCtrl" type="password" name="password" required>
+                <input matInput #RegisterPassword formControlName="firstCtrl" type="password" [(ngModel)]="password" required>
         </mat-form-field>
             <div class="arrow">
                 <button mat-button matStepperNext><i class="material-icons">arrow_right</i></button>

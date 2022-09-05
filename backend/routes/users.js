@@ -15,5 +15,17 @@ router.get('/', function(req, res, next) {
 
 
 });
+router.get('/:id', function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+  Producto.findOne({  
+        where: { Personid: req.params.id }  
+    })  
+    .then(productos => {  
+        res.json(productos); 
+    })  
+    .catch(error => res.status(400).send(error)) 
+
+
+});
 
 module.exports = router;

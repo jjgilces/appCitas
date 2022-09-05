@@ -1,0 +1,42 @@
+<div class="card bg-secondary container-fluid p-1" >
+    <div class="row g-0">
+      <div class="col-4 text-center p-t-2">
+        <img src="/assets/img/perfil.png" width="70vw"  class="img-fluid center-block" alt="profile picture">
+      </div>
+      <div class="col-8 text-center my-auto p-1">
+          <h2 class="card-title">Bienvenido Johan</h2>
+      </div>
+    </div>
+  </div>
+  
+  <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+  
+      <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+        <button mat-button routerLink="/chat" >
+          <mat-icon>chat</mat-icon>
+          Chat
+        </button>
+        <button mat-button  routerLink="/post">
+          <mat-icon>feed</mat-icon>
+          Publicacion
+        </button>
+        <button mat-button routerLink="/conocer">
+          <mat-icon>favorite</mat-icon>
+          Conocer
+        </button>
+      </div>
+      <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-menu x-position="before" #menu="matMenu">
+      <button mat-menu-item routerLink="/profile">
+        <mat-icon>persona</mat-icon>
+        Perfil
+      </button>
+      <button mat-menu-item routerLink="/login">
+        <mat-icon>power_settings_new</mat-icon>
+        Cerrar Sesion
+      </button>
+    </mat-menu>
+  

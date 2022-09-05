@@ -1,0 +1,23 @@
+<app-header></app-header>
+<div class="row" *ngIf="arregloPost.length !=0">
+    <div class="container" *ngFor="let d of arregloPost;">
+        <mat-card >
+            <mat-card-header>
+                <mat-card-title>{{d.author}}</mat-card-title>
+            </mat-card-header>
+            <div class="container">
+                <img class="img-card" mat-card-image src="{{d.url_to_image}}" >
+            </div>
+            <mat-card-content>
+            <p>{{d.description}}</p>
+                
+            </mat-card-content>
+            <mat-card-actions>
+                <!-- <mat-icon (click)="onReplyClick()" class="action-item" color="warn">chat_bubble_outline</mat-icon> -->
+                <mat-icon class="action-item" color="warn">favorite_border</mat-icon>
+                <mat-icon class="action-item" color="warn">save</mat-icon>
+            </mat-card-actions>
+
+    </mat-card>
+</div>
+</div>

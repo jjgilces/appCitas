@@ -29,6 +29,7 @@ import { PostComponent } from './components/post/post.component';
 import { MatchComponent } from './components/match/match.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProfileComponent,
     PostComponent,
     MatchComponent,
-    HeaderComponent
+    HeaderComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

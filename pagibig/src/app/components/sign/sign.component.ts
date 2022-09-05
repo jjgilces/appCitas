@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
+import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 
 @Component({
   selector: 'app-sign',
@@ -13,11 +14,12 @@ export class SignComponent implements OnInit {
   selectedGenre:String="";
   show: boolean= false;
   url:string='/assets/img/perfil.png';
-  signosZodiacales:String[]=["Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio","Piscis"]
+  signosZodiacales:String[]=["Aries", "Tauro", "Géminis", "Cancer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio","Piscis"]
   interest:String[]=["Mascotas","Deportes","Fotografía","Arte","Comedia","Lectura","Anime","Fumadores","Medio Ambiente"]
   generos:String[]=["Masculino","Femenino","Otro"]
   gustos:String[]=["Hombre","Mujeres"]
   rosa:String="warn"
+  password: string="";
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
@@ -26,15 +28,28 @@ export class SignComponent implements OnInit {
   });
   isLinear = false;
 
-  constructor(private _formBuilder: FormBuilder,private router: Router) { }
+
+
+  fireAuth: FirebaseTSAuth;
+  constructor(private _formBuilder: FormBuilder,private router: Router) { 
+    this.fireAuth= new FirebaseTSAuth();
+  }
 
   ngOnInit(): void {
   }
 
   confirm(){
-    console.log(this.selectedGenre);
-    console.log("user name is " + this.name);
-    this.router.navigate(['home']);
+    console.log(this.email);
+    console.log("user name is " + this.password);
+    this.fireAuth.createAccountWith(
+      {
+        email:this.email,
+        password:this.password,
+        onComplete: (uc)=>{this.router.navigate(['home']);      },
+        onFail:(error)=>{this.router.navigate(['sign']);}
+      }
+    );
+    
   }
 
   onSelectFile(e:any){
